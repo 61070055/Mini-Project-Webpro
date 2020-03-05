@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div><h3><u>รายการประกาศขาย</u></h3></div>
+    <form class="form-inline" method="GET" action="{% url 'buy' %}">
+        <div class="md-form mt-0" style="display: flex; flex-direction: row;">
+        <input class="form-control" type="text" placeholder="Search" id="search" name="search" aria-label="Search" style="width: 400px" value="{{search}}">
+        <button type="submit" class="btn btn-primary" style="margin-left: 1%;">ค้นหา</button>
+        </div>
+    </form>
+    <br/><br/>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ชื่อ</th>
+                    <th scope="col">วันที่สร้าง</th>
+                    <th scope="col">ผู้สร้าง</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for post in post_list %}
+                <tr>
+                    <td><a class="nav-link" href='#'>{{ post.text_book }}</a></td>
+                    <td>{{ post.create_date }}</td>
+                    <td>{{ post.create_by.username }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}

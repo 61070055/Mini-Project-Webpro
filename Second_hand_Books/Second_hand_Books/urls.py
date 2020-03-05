@@ -19,5 +19,8 @@ from Board import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/', views.login)
+    path('login/', views.my_login, name='login'),
+    path('logout/', views.my_logout, name='logout'),
+    path('buy/', views.buy, name='buy'),
+    path('', views.index, name='index')
 ]

@@ -53,15 +53,15 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#"><img src="{%static 'logo.png'%}" alt="books" height="42" width="42"></a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="display: flex;">
+        <a class="navbar-brand" href="{% url 'index' %}"><img src="{%static 'logo.png'%}" alt="books" height="42" width="42"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">รายการประกาศรับซื้อ</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'buy' %}">รายการประกาศรับซื้อ</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">รายการประกาศขาย</a>
@@ -72,15 +72,22 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">สร้าง ห้องขาย</a>
                 </li>
+            </ul>
+        </div>
+        <div style="display: flex; flex-direction: row; right: 10%;">
+            <ul class="navbar-nav">
+            {% if  user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link" href="#">เปลี่ยนรหัสผ่าน</a>
+                    <a class="nav-link" href="{% url 'logout' %}"><b>Logout</b></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Login</a>
+            {% else %}
+                    <a class="nav-link" href="{% url 'login' %}">Login</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Register</a>
                 </li>
+            {% endif %}
             </ul>
         </div>
     </nav>

@@ -1,9 +1,9 @@
-{% extends "base-anonymous.html" %}
+{% extends "base.html" %}
 {% block content %}
     <div class="container">
         <h1>กรุณาลงชื่อเข้าใช้ เพื่อสร้างการซื้อ-ขาย</h1>
         <br/><br/>
-        <form method="POST" action="#">
+        <form method="POST" action="{% url 'login' %}">
         {% csrf_token %}
             <div class="form-group">
                 <label for="username">Username:</label>
@@ -16,6 +16,9 @@
                     name="password" value="{{password}}">
             </div>
             <button type="submit" class="btn btn-primary ml-3">Login</button>
+            {% if error %}
+            <p style="text-align: center; color: red;"><b>{{ error }}</b><p>
+            {% endif %}
         </form>
         <br/><br/>
     </div>
