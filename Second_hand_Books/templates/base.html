@@ -64,13 +64,10 @@
                     <a class="nav-link" href="{% url 'buy' %}">รายการประกาศรับซื้อ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">รายการประกาศขาย</a>
+                    <a class="nav-link" href="{% url 'sell' %}">รายการประกาศขาย</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">สร้าง ห้องรับซื้อ</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">สร้าง ห้องขาย</a>
+                    <a class="nav-link" href="#">สร้างห้อง ซื้อ-ขาย</a>
                 </li>
             </ul>
         </div>
@@ -85,7 +82,7 @@
                     <a class="nav-link" href="{% url 'login' %}">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Register</a>
+                    <a class="nav-link" href="{% url 'register' %}">Register</a>
                 </li>
             {% endif %}
             </ul>

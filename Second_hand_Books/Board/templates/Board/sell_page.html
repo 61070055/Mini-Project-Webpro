@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div><h3><u>รายการที่ประกาศรับซื้อ</u></h3></div>
-    <form class="form-inline" method="GET" action="{% url 'buy' %}">
+    <div><h3><u>รายการที่ประกาศขาย</u></h3></div>
+    <form class="form-inline" method="GET" action="{% url 'sell' %}">
         <div class="md-form mt-0" style="display: flex; flex-direction: row;">
         <input class="form-control" type="text" placeholder="ค้นหาชื่อ" id="search" name="search" aria-label="Search" style="width: 400px" value="{{search}}">
         <button type="submit" class="btn btn-primary" style="margin-left: 1%;">ค้นหา</button>
@@ -18,7 +18,7 @@
             </thead>
             <tbody>
                 {% for post in post_list %}
-                {% if post.post_type == '01'%}
+                {% if post.post_type == '02'%}
                 <tr>
                     <td><a class="nav-link" href='#'>{{ post.text_book }}</a></td>
                     <td>{{ post.create_date }}</td>

@@ -1,11 +1,13 @@
 
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
-from django.contrib.auth import authenticate, login, logout
 from django.views.decorators.csrf import csrf_protect
-from django.contrib.auth.decorators import login_required, permission_required
 
 from Board.models import Post
+
 
 # Create your views here.
 @csrf_protect
@@ -20,19 +22,9 @@ def my_login(request):
         if user:
             login(request, user)
 
-            next_url = request.POST.get('next_url')
-            if next_url:
-                return redirect(next_url)
-            else:
-                return redirect('index')
+            return redirect('index')
         else:
-            context['username'] = username
-            context['password'] = password
             context['error'] = 'Wrong username or password!'
-
-    next_url = request.GET.get('next')
-    if next_url:
-        context['next_url'] = next_url
     
 
     return render(request, template_name='login.html', context=context)
@@ -57,3 +49,54 @@ def buy(request):
         'post_list': post_list
     }
     return render(request, template_name='Board/buy_page.html', context=context)
+
+def sell(request):
+    search = request.GET.get('search', '')
+
+    post_list = Post.objects.filter(
+        pose_status="01", text_book__icontains=search
+    )
+
+    context= {
+        'search': search,
+        'post_list': post_list
+    }
+    return render(request, template_name='Board/sell_page.html', context=context)
+
+
+def my_register(request):
+    context = {}
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password1 = request.POST.get('password1')
+        password2 = request.POST.get('password2')
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        user_email = request.POST.get('email')
+        user_name_inuse = User.objects.filter(username = username)
+        user_email_inuse = User.objects.filter(email = user_email)
+        if (user_name_inuse == ""):
+            print('yes')
+        for i in user_name_inuse:
+            print("test1234")
+            print(i.username)
+            if (i.username != username):
+                print("01 username pass")
+                print(password1, password2)
+                if (password1 == password2):
+                    print('02 password pass')
+                    user = User.objects.create_user(
+                        username = username, 
+                        email = user_email, 
+                        password = password1, 
+                        first_name = first_name, 
+                        last_name = last_name)
+                    user.save()
+                    return redirect('login')
+                else:
+                    context['error'] = 'password not match!'
+            else:
+                print("else username")
+                context['error'] = 'ชื่อผู้ใช้นี้ได้ถูกใช้งานแล้ว'
+    
+    return render(request, template_name='register.html', context=context)

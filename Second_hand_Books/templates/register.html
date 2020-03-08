@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+        <h1 style="text-align: center;">สมัครสมาชิก</h1>
+        <br/><br/>
+        <div style="border-style: solid; border-radius: 5%; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 50%; height: 50%; padding-left: 1%; padding-top: 2%; background-color: aquamarine; box-shadow: 10px 10px 7px gray;">
+        <h3>โปรดกรอบข้อมูลให้ครบ</h3><br>
+        <form method="POST" action="{% url 'register' %}">
+        {% csrf_token %}
+            <div class="form-group" style="display: flex; flex-direction: row;">
+                <label for="username">Username:</label>
+                <input required style="width: 30%;" type="text" class="form-control ml-3" id="username" 
+                    name="username" value="{{username}}"> &nbsp;&nbsp;&nbsp;&nbsp;
+                <label for="password1">Password:</label> 
+                <input required style="width: 30%;" type="password" class="form-control ml-3" id="password" 
+                    name="password1" value="{{password1}}">
+            </div>
+            <div class="form-group" style="display: flex; flex-direction: row;">
+                <label for="first_name">ชื่อจริง:</label>
+                <input required type="text" class="form-control ml-3" id="first_name" 
+                    name="first_name" value="{{first_name}}" style="width: 30%;"> &nbsp;&nbsp;&nbsp;&nbsp;
+                <label for="password2">Password (อีกครั้ง):</label>
+                <input required type="password" class="form-control ml-3" id="password2" 
+                    name="password2" value="{{password2}}" style="width: 30%;">
+            </div>
+            <div class="form-group" style="display: flex; flex-direction: row;">
+                <label for="last_name">นามสกุล:</label>
+                <input required type="text" class="form-control ml-3" id="last_name" 
+                    name="last_name" value="{{last_name}}" style="width: 30%;"> &nbsp;&nbsp;&nbsp;&nbsp;
+                <label for="email">Email:</label>
+                <input required type="email" class="form-control ml-3" id="email" 
+                    name="email" value="{{email}}" style="width: 30%;">
+            </div>
+            <div style="display: flex; flex-direction: row;">
+                <button type="submit" class="btn btn-primary ml-3">ยืนยัน</button> &nbsp;&nbsp;&nbsp;&nbsp;
+                {% if error %}
+                <p style="text-align: center; color: red;"><b>{{ error }}</b><p>
+                {% endif %}
+            </div>
+        </form>
+        </div>
+        <br/><br/>
+    </div>
+{% endblock %}
