@@ -153,7 +153,13 @@ def detail(request, post_id):
             )
         M.save()
 
+    
+    message_list = Message.objects.filter(
+        post_id = post_id
+    )
+
     context= {
-        'post': post
+        'post': post,
+        'message_list': message_list
     }
     return render(request, template_name='Board/detail.html', context=context)

@@ -39,5 +39,6 @@ class Post(models.Model):
 class Message(models.Model):
     id = models.AutoField(primary_key=True)
     message = models.CharField(max_length=255)
+    create_date = models.DateTimeField(auto_now=True)
     post_id = models.ForeignKey(Post, on_delete=models.CASCADE)
     create_by = models.ForeignKey(User, on_delete=models.CASCADE)

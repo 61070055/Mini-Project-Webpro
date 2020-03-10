@@ -26,6 +26,7 @@
             {% endif %}
         </div>
     </div>
+    {% if  user.is_authenticated %}
     <div class="row">
         <div class="col">
         </div>
@@ -39,12 +40,19 @@
             </form>
         </div>
     </div>
+    {% endif %}
     <div class="row">
         <div class="col">
         </div>
         <div class="col" style="margin-right: 20%;">
             <h4>Comments</h4>
-            
+            {% for m_list in message_list %}
+            <div class="border border-secondary rounded-lg">
+                <br>
+                <p>&nbsp; {{m_list.message}}</p>
+                <p style="text-align: right;">โดย: {{m_list.create_by}} เมื่อ: {{m_list.create_date}}&nbsp;&nbsp;</p>
+            </div><br>
+            {% endfor %}
         </div>
     </div>
 </div>
