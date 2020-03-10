@@ -16,13 +16,20 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from Board import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', views.my_login, name='login'),
     path('logout/', views.my_logout, name='logout'),
+    path('detail/<int:post_id>/', views.detail, name='post_detail'),
     path('buy/', views.buy, name='buy'),
     path('sell/', views.sell, name='sell'),
     path('register/', views.my_register, name='register'),
+    path('create/', views.create_post, name='create'),
     path('', views.index, name='index')
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

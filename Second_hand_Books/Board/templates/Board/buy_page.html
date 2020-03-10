@@ -18,9 +18,9 @@
             </thead>
             <tbody>
                 {% for post in post_list %}
-                {% if post.post_type == '01'%}
+                {% if post.post_type == '1'%}
                 <tr>
-                    <td><a class="nav-link" href='#'>{{ post.text_book }}</a></td>
+                    <td><a class="nav-link" href="{% url 'post_detail' post_id=post.id %}">{{ post.text_book }}</a></td>
                     <td>{{ post.create_date }}</td>
                     <td>{{ post.create_by.username }}</td>
                 </tr>

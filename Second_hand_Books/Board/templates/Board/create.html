@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+        <h1 style="text-align: center;">สร้างห้อง ซื้อ-ขาย</h1>
+        <br/><br/>
+        <div style="border-style: solid; border-radius: 5%; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 50%; height: 50%; padding-left: 1%; padding-top: 2%; background-color: aquamarine; box-shadow: 10px 10px 7px gray;">
+        <h3>โปรดกรอบข้อมูลให้ครบ</h3><br>
+        <form method="POST" action="{% url 'create' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+            <div class="form-group" style="display: flex; flex-direction: row;">
+                <label for="text_book">ชื่อหนังสือ:</label>
+                <input required style="width: 30%;" type="text" class="form-control ml-3" id="text_book" 
+                    name="text_book" value="{{text_book}}"> &nbsp;&nbsp;&nbsp;&nbsp;
+                <label for="type_s_b">ประเภทของห้อง:</label>  &nbsp;
+                <select name="type_s_b" id="type_s_b">
+                    <option value="{{01}}">ต้องการซื้อ</option>
+                    <option value="{{02}}">ต้องการขาย</option>
+                </select>
+            </div>
+            <div class="form-group" style="display: flex; flex-direction: row;">
+                <label for="price">ราคา:</label>
+                <input required type="number" class="form-control ml-3" id="price" 
+                    name="price" value="{{price}}" style="width: 30%;"> &nbsp;&nbsp;&nbsp;&nbsp;
+                <label for="picture">รูปภาพ:</label> &nbsp;
+                <input required type="file" accept="image/*" name="picture">
+            </div>
+            <div style="display: flex; flex-direction: row;">
+                <button type="submit" class="btn btn-primary ml-3">ยืนยัน</button> &nbsp;&nbsp;&nbsp;&nbsp;
+                {% if error %}
+                <p style="text-align: center; color: red;"><b>{{ error }}</b><p>
+                {% endif %}
+            </div>
+        </form>
+        </div>
+        <br/><br/>
+    </div>
+{% endblock content %}

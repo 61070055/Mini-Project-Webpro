@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+{% if post.post_type == '1' %}
+    <h3>ประกาศรับซื้อ [{{ post.text_book }}]</h3></br>
+{% else %}
+    <h3>ประกาศขาย [{{ post.text_book }}]</h3></br>
+{% endif %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <img src="{{ post.picture }}" alt="{{ post.picture }}" class="img-thumbnail rounded-lg border border-primary" style="width: 20vw; height: 30vh;">
+        </div>
+        <div class="col rounded-lg border border-primary" style="margin-right: 20%;">
+            <br>
+            <p><b>ชื่อ:</b> {{post.text_book}}</p>
+            <p><b>ราคา:</b> {{post.price}}</p>
+            {% if post.post_type == '1' %}
+            <p><b>รับซื้อโดย:</b> {{post.create_by}}</p>
+            {% else %}
+            <p><b>ขายโดย:</b> {{post.create_by}}</p>
+            {% endif %}
+            {% if post.post_type == '1' %}
+            <p><b>รับซื้อเมื่อ:</b> {{post.create_date}}</p>
+            {% else %}
+            <p><b>ขายเมื่อ:</b> {{post.create_date}}</p>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+        </div>
+        <div class="col" style="margin-right: 20%; margin-top: 1%;">
+            <form action="{% url 'post_detail' post_id=post.id %}" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <input type="text" name="message" id="message" style="width: 19vw;" value="{{message}}"> 
+                <button type="submit" class="btn btn-primary" style="margin-left: 2%;">เขียน Comment</button>
+            </div>   
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+        </div>
+        <div class="col" style="margin-right: 20%;">
+            <h4>Comments</h4>
+            
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
