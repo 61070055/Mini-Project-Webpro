@@ -7,6 +7,7 @@ from django.shortcuts import redirect, render
 from django.views.decorators.csrf import csrf_protect
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
+from django.utils.datastructures import MultiValueDictKeyError
 
 from Board.models import Post, Message
 
@@ -118,12 +119,15 @@ def create_post(request):
         text_book = request.POST.get('text_book')
         type_s_b = request.POST.get('type_s_b')
         price = request.POST.get('price')
-
-        uploaded_picture = request.FILES['picture']
-        fs = FileSystemStorage()
-        name = fs.save(uploaded_picture.name, uploaded_picture)
-        url = fs.url(name)
-        print(url)
+        try:
+            uploaded_picture = request.FILES['picture']
+            fs = FileSystemStorage()
+            name = fs.save(uploaded_picture.name, uploaded_picture)
+            url = fs.url(name)
+            print(url)
+        except MultiValueDictKeyError:
+            url = '/static/default.png'
+        
         user = request.user
 
 
