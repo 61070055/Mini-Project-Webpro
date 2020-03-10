@@ -36,14 +36,20 @@ def my_logout(request):
     logout(request)
     return redirect('index')
 
-def index(request):  
-    return render(request, template_name='Board/index.html')
+def index(request):
+
+    user = request.user
+
+    context = {
+        'user': user
+    }
+    return render(request, template_name='Board/index.html', context=context)
 
 def buy(request):
     search = request.GET.get('search', '')
 
     post_list = Post.objects.filter(
-        pose_status="1", text_book__icontains=search
+        post_status="1", text_book__icontains=search
     )
 
     context= {
@@ -56,7 +62,7 @@ def sell(request):
     search = request.GET.get('search', '')
 
     post_list = Post.objects.filter(
-        pose_status="1", text_book__icontains=search
+        post_status="1", text_book__icontains=search
     )
 
     context= {
@@ -142,10 +148,10 @@ def create_post(request):
 def detail(request, post_id):
     post = Post.objects.get(pk=post_id)
 
-    if request.method == 'POST':
+    if ('commentbtn' in request.POST):
         message = request.POST.get('message')
         user = request.user
-
+        print('1')
         M = Message(
             message = message,
             create_by = user,
@@ -153,13 +159,23 @@ def detail(request, post_id):
             )
         M.save()
 
-    
+    elif ('close_btn' in request.POST):
+
+        post.post_status = '2'
+        post.save()
+
+        if (post.post_type == '1'):
+            return redirect('buy')
+        else:
+            return redirect('sell')
+
     message_list = Message.objects.filter(
         post_id = post_id
     )
 
     context= {
         'post': post,
-        'message_list': message_list
+        'message_list': message_list,
+        'user': request.user
     }
     return render(request, template_name='Board/detail.html', context=context)

@@ -1,4 +1,25 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div style="color: red; text-align: center;"><h4><b>ยินดีต้อนรับเข้าสู่เว็บไซต์ คุณสามารถสร้าง Post รับซื้อ หรือ ขายได้ เมื่อคุณเป็นสมาชิกของเว็บไซต์เท่านั้น</b></h4></div>
+    <div class="container" style=" position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+        {% if  user.is_authenticated == False %}
+        <div class="row">
+            <div class="col">
+                <p class='h4' style="color: red; text-align: center;"><b>ยินดีต้อนรับเข้าสู่เว็บไซต์ คุณสามารถสร้าง Post รับซื้อ หรือ ขายได้ เมื่อคุณเป็นสมาชิกของเว็บไซต์เท่านั้น</b></h4>
+                <a class="nav-link" href="{% url 'login' %}">เข้าสู่ระบบ</a>
+                <a class="nav-link" href="{% url 'register' %}">สมัครสมาชิก</a>
+            </div>
+        </div>
+        {% else %}
+        <div class="row">
+            <div class="col">
+                <h4 style="text-align: center; color: red">ยินดีต้อนรับคุณ : <b>{{ user.username }}</b></h4>
+                    <p style="text-align: center;">หากไม่ใช่คุณ <a class="nav-link" href="{% url 'logout' %}">ออกจากระบบ</a></p>
+            </div>
+        </div>
+        {% endif %}
+        </div>
+        
+    
+    
+    
 {% endblock content %}

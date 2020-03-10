@@ -31,7 +31,7 @@ class Post(models.Model):
         (CLOSED, 'Post Closed')
     )
 
-    pose_status = models.CharField(max_length=2, choices=STATUS, default='1')
+    post_status = models.CharField(max_length=2, choices=STATUS, default='1')
 
     def __str__(self):
         return '(%s)' % (self.text_book)

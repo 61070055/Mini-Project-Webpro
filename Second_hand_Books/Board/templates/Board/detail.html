@@ -26,7 +26,28 @@
             {% endif %}
         </div>
     </div>
-    {% if  user.is_authenticated %}
+    {% if post.create_by.id == user.id %}
+    <div class="row">
+        <div class="col">
+            <br>
+            <form action="{% url 'post_detail' post_id=post.id %}" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <button type="submit" class="btn btn-warning" name="close_btn" style="margin-left: 5%;">กดเพื่อปิดการซื้อ-ขาย</button>
+                </div>
+                </form>
+        </div>
+        <div class="col" style="margin-right: 20%; margin-top: 1%;">
+            <form action="{% url 'post_detail' post_id=post.id %}" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <input type="text" name="message" id="message" style="width: 19vw;" value="{{message}}"> 
+                <button type="submit" class="btn btn-primary" name="commentbtn" style="margin-left: 2%;">เขียน Comment</button>
+            </div>   
+            </form>
+        </div>
+    </div>
+    {% elif  user.is_authenticated %}
     <div class="row">
         <div class="col">
         </div>
