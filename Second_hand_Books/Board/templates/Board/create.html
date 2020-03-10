@@ -3,7 +3,7 @@
     <div class="container">
         <h1 style="text-align: center;">สร้างห้อง ซื้อ-ขาย</h1>
         <br/><br/>
-        <div style="border-style: solid; border-radius: 5%; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 50%; height: 50%; padding-left: 1%; padding-top: 2%; background-color: aquamarine; box-shadow: 10px 10px 7px gray;">
+        <div class="col rounded-lg border border-primary" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 50%; height: 50%; padding-left: 1%; padding-top: 2%; box-shadow: 10px 10px 7px gray;">
         <h3>โปรดกรอบข้อมูลให้ครบ</h3><br>
         <form method="POST" action="{% url 'create' %}" enctype="multipart/form-data">
         {% csrf_token %}
