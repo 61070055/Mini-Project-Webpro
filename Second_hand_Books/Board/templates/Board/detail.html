@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
 {% if post.post_type == '1' %}
-    <h3>ประกาศรับซื้อ [{{ post.text_book }}]</h3></br>
+    <h3>ประกาศรับซื้อ [<b><u>{{ post.text_book }}</b></u>]</h3></br>
 {% else %}
-    <h3>ประกาศขาย [{{ post.text_book }}]</h3></br>
+    <h3>ประกาศขาย [<b><u>{{ post.text_book }}</b></u>]</h3></br>
 {% endif %}
 <div class="container">
     <div class="row">

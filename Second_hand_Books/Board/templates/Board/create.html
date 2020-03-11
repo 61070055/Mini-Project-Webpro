@@ -12,17 +12,17 @@
                 <input required style="width: 30%;" type="text" class="form-control ml-3" id="text_book" 
                     name="text_book" value="{{text_book}}"> &nbsp;&nbsp;&nbsp;&nbsp;
                 <label for="type_s_b">ประเภทของห้อง:</label>  &nbsp;
-                <select name="type_s_b" id="type_s_b">
+                <select class="form-control" style="width: 180px" name="type_s_b" id="type_s_b">
                     <option value="{{01}}">ต้องการซื้อ</option>
                     <option value="{{02}}">ต้องการขาย</option>
                 </select>
-            </div>
+            </div><br>
             <div class="form-group" style="display: flex; flex-direction: row;">
                 <label for="price">ราคา:</label>
                 <input required type="number" class="form-control ml-3" id="price" 
                     name="price" value="{{price}}" style="width: 30%;"> &nbsp;&nbsp;&nbsp;&nbsp;
                 <label for="picture">รูปภาพ:</label> &nbsp;
-                <input type="file" accept="image/*" name="picture">
+                <input class="form-control-file" type="file" accept="image/*" name="picture">
             </div>
             <div style="display: flex; flex-direction: row;">
                 <button type="submit" class="btn btn-primary ml-3">ยืนยัน</button> &nbsp;&nbsp;&nbsp;&nbsp;
