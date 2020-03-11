@@ -38,7 +38,10 @@ class Post(models.Model):
 
 class Message(models.Model):
     id = models.AutoField(primary_key=True)
-    message = models.CharField(max_length=255)
+    message = models.CharField(max_length=255,null=False, blank=False)
     create_date = models.DateTimeField(auto_now=True)
     post_id = models.ForeignKey(Post, on_delete=models.CASCADE)
     create_by = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return '(%s) %s %s' % (self.create_by,self.post_id, self.message)

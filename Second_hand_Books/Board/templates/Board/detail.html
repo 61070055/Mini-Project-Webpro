@@ -41,7 +41,7 @@
             <form action="{% url 'post_detail' post_id=post.id %}" method="POST">
             {% csrf_token %}
             <div class="form-group">
-                <input type="text" name="message" id="message" style="width: 19vw;" value="{{message}}"> 
+                <input required type="text" name="message" id="message" style="width: 19vw;" value="{{message}}"> 
                 <button type="submit" class="btn btn-primary" name="commentbtn" style="margin-left: 2%;">เขียน Comment</button>
             </div>   
             </form>
@@ -55,7 +55,7 @@
             <form action="{% url 'post_detail' post_id=post.id %}" method="POST">
             {% csrf_token %}
             <div class="form-group">
-                <input type="text" name="message" id="message" style="width: 19vw;" value="{{message}}"> 
+                <input required type="text" name="message" id="message" style="width: 19vw;" value="{{message}}"> 
                 <button type="submit" class="btn btn-primary" name="commentbtn" style="margin-left: 2%;">เขียน Comment</button>
             </div>   
             </form>
