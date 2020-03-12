@@ -27,7 +27,7 @@ def my_login(request):
 
             return redirect('index')
         else:
-            context['error'] = 'Wrong username or password!'
+            context['error'] = 'username หรือ password ผิด!'
     
 
     return render(request, template_name='login.html', context=context)
@@ -103,7 +103,7 @@ def my_register(request):
                 user.save()
                 return redirect('login')
             else:
-                    context['error'] = 'password not match!'
+                    context['error'] = 'รหัสผ่านไม่ตรงกัน'
         except:
             context['error'] = 'ชื่อผู้ใช้ได้ถูกใช้งานไปแล้ว' 
             # else:

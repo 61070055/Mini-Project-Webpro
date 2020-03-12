@@ -23,7 +23,7 @@ class Post(models.Model):
 
     post_type = models.CharField(max_length=2, choices=TYPES, default='1')
     price = models.FloatField(null=False, blank=False)
-    picture = models.FilePathField(null=False, blank=True, path=images_path)
+    picture = models.FilePathField(null=True, blank=True, path=images_path)
     OPEN = '1'
     CLOSED = '2'
     STATUS = (
