@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'Second_hand_Books.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'Miniproject',
+        'NAME': 'Miniproject-test',
         'USER': 'postgres',
         'PASSWORD': '0895136213',
         'HOST': 'localhost',
@@ -118,7 +118,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Bangkok'
 
 USE_I18N = True
 

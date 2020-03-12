@@ -8,7 +8,7 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <img src="{{ post.picture }}" alt="{{ post.picture }}" class="img-thumbnail rounded-lg border border-primary" style="width: 20vw; height: 30vh;">
+            <img src="{{ post.picture }}" alt="{{ post.picture }}" class="img-thumbnail rounded-lg border border-primary" style="width: 20vw; height: 34vh;">
         </div>
         <div class="col rounded-lg border border-primary" style="margin-right: 20%;">
             <br>
@@ -22,7 +22,7 @@
             {% if post.post_type == '1' %}
             <p><b>รับซื้อเมื่อ:</b> {{post.create_date}}</p>
             {% else %}
-            <p><b>ขายเมื่อ:</b> {{post.create_date}}</p>
+            <p><b>ขายเมื่อ:</b> {{post.create_date|date:"d/m/Y H:i"}}</p>
             {% endif %}
         </div>
     </div>
@@ -71,7 +71,7 @@
             <div class="border border-secondary rounded-lg">
                 <br>
                 <p>&nbsp; {{m_list.message}}</p>
-                <p style="text-align: right;">โดย: {{m_list.create_by}} เมื่อ: {{m_list.create_date}}&nbsp;&nbsp;</p>
+                <p style="text-align: right;">โดย: {{m_list.create_by}} เมื่อ: {{m_list.create_date|date:"d/m/Y H:i"}}&nbsp;&nbsp;</p>
             </div><br>
             {% endfor %}
         </div>
